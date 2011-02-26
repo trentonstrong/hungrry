@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Register an account{% endblock %}
+
+{% block main_content %}
+
+<h2>Registration Successful</h2>
+
+<p>An email has been sent to the address you provided with an activation key.  Depending on your email service provider it may take a few minutes to arrive.</p>
+<p>When it does arrive, just click on the confirmation link to activate your account.</p>
+
+{% endblock %}

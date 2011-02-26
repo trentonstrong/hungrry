@@ -1,0 +1,13 @@
+{% extends "account/account_profile.html" %}
+
+{% block title %}Update Profile Image{% endblock %}
+
+{% block profile_header %}Upload Profile Image{% endblock %}
+
+{% block profile_form %}
+<form action="." method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_table }}
+		<input type="submit" value="Upload" />
+</form>
+{% endblock %}
