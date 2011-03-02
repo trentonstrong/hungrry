@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from sorl.thumbnail.fields import ThumbnailField
 import settings
 
 import os
@@ -34,7 +33,7 @@ def get_user_upload_dir(instance, filename):
 # Sitewide profile for users.  Extends basic user data with application specifics (like location data)
 class UserProfile(models.Model):
 
-		default_image_path = '%simages/default_image.gif' % settings.STATICFILES_URL
+		default_image_path = '%simages/default_image.gif' % settings.STATIC_URL
 
 		user = models.ForeignKey(User, unique=True)
 
@@ -42,11 +41,6 @@ class UserProfile(models.Model):
 
 		upload_dir = models.CharField(max_length = 100, blank = True)
 
-		profile_image = ThumbnailField(
-						upload_to = get_user_upload_dir,
-						default = default_image_path,
-						size = (100,100),
-						)
-
+		
 		
 

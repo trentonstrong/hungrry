@@ -9,7 +9,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title></title>
+  <title>{% block title %}Hunger Status{% endblock %}</title>
+
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -29,11 +30,13 @@
     <header>
 	<div id="header">
 		<a href="index.html"><img src="{{ STATIC_URL }}images/logo.png" border="0"></a>
+		{% include "_topbar.html" %}
 	</div>
     </header>
     
     <div id="main">
 		<div id="homeleft">
+			{% block content %}
 			<h1>Who Hungry?:</h1>
 			<div id="hungryuser">&nbsp;</div>
 			<div id="hungryuser">&nbsp;</div>
@@ -47,6 +50,7 @@
 			<div id="hungryuser">&nbsp;</div>
 			<div id="hungryuser">&nbsp;</div>
 			<div id="hungryuser">&nbsp;</div>
+			{% endblock %}
 		</div>
 		<div id="homeright">
 			<h1>how hungry are you?:</h1>

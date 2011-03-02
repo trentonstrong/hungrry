@@ -38,8 +38,7 @@ def fix_IE_for_attach(request, response):
     while expecting the browser to cache it (only when the browser is IE). This
     leads to IE not allowing the client to download.
     """
-    useragent = request.META.get('HTTP_USER_AGENT', '').upper()
-    if 'MSIE' not in useragent and 'CHROMEFRAME' not in useragent:
+    if 'MSIE' not in request.META.get('HTTP_USER_AGENT', '').upper():
         return response
 
     offending_headers = ('no-cache', 'no-store')
@@ -67,8 +66,7 @@ def fix_IE_for_vary(request, response):
     by clearing the Vary header whenever the mime-type is not safe
     enough for Internet Explorer to handle.  Poor thing.
     """
-    useragent = request.META.get('HTTP_USER_AGENT', '').upper()
-    if 'MSIE' not in useragent and 'CHROMEFRAME' not in useragent:
+    if 'MSIE' not in request.META.get('HTTP_USER_AGENT', '').upper():
         return response
 
     # These mime-types that are decreed "Vary-safe" for IE:

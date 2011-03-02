@@ -9,5 +9,5 @@ class ProfileForm(forms.Form):
 
 		
 class ProfilePhotoForm(forms.Form):
-		profile_image = forms.ImageField(required=True)		
+		profile_image = forms.ImageField(required=True)	
 		

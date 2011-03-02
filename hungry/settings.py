@@ -1,13 +1,16 @@
-# Django settings for web project.
 
+# DEBUG Settings
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+# Site Administrators
 ADMINS = (
      ('Trent Strong', 'trent@hungerstatus.com'),
 )
 
 MANAGERS = ADMINS
+
+# Database Backend
 
 DATABASES = {
     'default': {
@@ -27,11 +30,13 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
+
+# Site Identifier (to use in functionality specific to a web server instance)
 
 SITE_ID = 1
 
@@ -52,6 +57,12 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = ''
 
+STATIC_URL = "/static/"
+
+STATICFILES_DIRS = (
+    '/home/trent/Development/hungerstatus/hungry/static',
+)
+
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
@@ -60,6 +71,11 @@ ADMIN_MEDIA_PREFIX = '/media/'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '$x^@9*3tae4siabuj5#q3wtogal_sxz1j@+f6*1*4@ws$7v&vp'
 
+# Amazon Web Services Keys
+AWS_KEY = 'AKIAIGOXVOZUZEUSXAGQ'
+AWS_SECRET = '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'
+
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -67,6 +83,7 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+# Installed Middlware
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -75,22 +92,42 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'web.urls'
+# Master URL module
+ROOT_URLCONF = 'hungry.urls'
 
+# Search directories for templates
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+	'/home/trent/Development/hungerstatus/hungry/templates'
 )
 
+# Registered Django Applications
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'account',
+    'registration',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+# Email Backend Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
+EMAIL_FILE_PATH = '/home/trent/Development/hungerstatus/hungry/tmp/mail' # change this to a proper location
+
+# APPLICATION SPECIFIC SETTINGS
+
+# Registration
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+AUTH_PROFILE_MODULE = 'account.UserProfile'

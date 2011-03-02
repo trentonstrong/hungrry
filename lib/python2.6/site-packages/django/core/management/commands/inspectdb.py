@@ -20,7 +20,7 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         try:
             for line in self.handle_inspection(options):
-                self.stdout.write("%s\n" % line)
+                print line
         except NotImplementedError:
             raise CommandError("Database inspection isn't supported for the currently selected database backend.")
 
@@ -66,11 +66,12 @@ class Command(NoArgsCommand):
                 if ' ' in att_name:
                     att_name = att_name.replace(' ', '_')
                     comment_notes.append('Field renamed to remove spaces.')
-                    
                 if '-' in att_name:
                     att_name = att_name.replace('-', '_')
                     comment_notes.append('Field renamed to remove dashes.')
-                    
+                if keyword.iskeyword(att_name):
+                    att_name += '_field'
+                    comment_notes.append('Field renamed because it was a Python reserved word.')
                 if column_name != att_name:
                     comment_notes.append('Field name made lowercase.')
 
@@ -96,10 +97,6 @@ class Command(NoArgsCommand):
                             extra_params['unique'] = True
 
                     field_type += '('
-                    
-                if keyword.iskeyword(att_name):
-                    att_name += '_field'
-                    comment_notes.append('Field renamed because it was a Python reserved word.')
 
                 # Don't output 'id = meta.AutoField(primary_key=True)', because
                 # that's assumed if it doesn't exist.
