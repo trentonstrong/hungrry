@@ -1,0 +1,4 @@
+#!/home/trent/Development/hungerstatus/bin/python -u
+
+from logilab.common.pytest import run
+run()

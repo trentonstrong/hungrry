@@ -1,0 +1,3 @@
+#!/home/trent/Development/hungerstatus/bin/python
+from pylint import epylint
+epylint.Run()
