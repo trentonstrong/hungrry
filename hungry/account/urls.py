@@ -7,7 +7,7 @@ from registration.views import activate
 from registration.views import register
 from registration.forms import RegistrationFormTermsOfService
 
-from account.views import profile
+from account.views import profile, profile_update, profile_photo
 
 urlpatterns = patterns('',
                        # User Profile Pages
@@ -20,6 +20,18 @@ urlpatterns = patterns('',
 					   url(r'^profile/$',
 						   profile,
 						   name='account_profile'),
+
+                       # Update user profile
+                       url(r'^profile/update$',
+                           profile_update,
+                           name='account_profile_update'),
+                       
+                       # URL for retrieving/setting user profile photo
+                       # Currently a callback endpoint for Transloadit upload service
+                       url(r'^profile/(?P<username>\w+)/photo$',
+                           profile_photo,
+                           name='account_profile_photo'),
+                
                        
                        # Activation completion page
                        url(r'^activate/complete/$',

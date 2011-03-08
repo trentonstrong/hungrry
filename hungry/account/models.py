@@ -1,9 +1,12 @@
-from django.db import models
-from django.contrib.auth.models import User
-import settings
-
 import os
 import hashlib
+
+from django.db import models
+from django.contrib.auth.models import User
+
+from hungry import settings
+
+from media.models import Media
 
 # Returns the media upload path for a user
 #
@@ -35,12 +38,8 @@ class UserProfile(models.Model):
 
 		default_image_path = '%simages/default_image.gif' % settings.STATIC_URL
 
-		user = models.ForeignKey(User, unique=True)
+		user = models.OneToOneField(User)
 
-		zip_code = models.CharField(max_length = 5)
+		zip_code = models.CharField(max_length = 9)
 
-		upload_dir = models.CharField(max_length = 100, blank = True)
-
-		
-		
-
+		avatar = models.ForeignKey(Media, null = True)

@@ -1,3 +1,4 @@
+import os
 
 # DEBUG Settings
 DEBUG = True
@@ -66,17 +67,29 @@ STATICFILES_DIRS = (
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
+
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
+
 SECRET_KEY = '$x^@9*3tae4siabuj5#q3wtogal_sxz1j@+f6*1*4@ws$7v&vp'
 
 # Amazon Web Services Keys
+
 AWS_KEY = 'AKIAIGOXVOZUZEUSXAGQ'
 AWS_SECRET = '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'
 
+# Transloadit Related
+
+TRANSLOADIT_KEY = '6311ca78f89642a1a4d2ae70fceacf57'
+TRANSLOADIT_SECRET = '870488d461d0706cefc9ee90e5bab6b68df1411b'
+
+TRANSLOADIT_TEMPLATES = {
+    'profile_photo': 'a6010eb2b85f46d5b25ba719a49f855b',
+}
 
 # List of callables that know how to import templates from various sources.
+
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
@@ -84,6 +97,7 @@ TEMPLATE_LOADERS = (
 )
 
 # Installed Middlware
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -93,14 +107,14 @@ MIDDLEWARE_CLASSES = (
 )
 
 # Master URL module
+
 ROOT_URLCONF = 'hungry.urls'
 
 # Search directories for templates
+
+ROOT_PATH = os.path.dirname(__file__)
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-	'/home/trent/Development/hungerstatus/hungry/templates'
+    os.path.join(ROOT_PATH,'templates'),
 )
 
 # Registered Django Applications
@@ -113,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'account',
     'registration',
+    'media',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -120,9 +135,9 @@ INSTALLED_APPS = (
 )
 
 # Email Backend Configuration
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-
-EMAIL_FILE_PATH = '/home/trent/Development/hungerstatus/hungry/tmp/mail' # change this to a proper location
+if (DEBUG):
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = '/home/trent/Development/hungerstatus/hungry/tmp/mail' # change this to a proper location
 
 # APPLICATION SPECIFIC SETTINGS
 
@@ -131,3 +146,5 @@ EMAIL_FILE_PATH = '/home/trent/Development/hungerstatus/hungry/tmp/mail' # chang
 ACCOUNT_ACTIVATION_DAYS = 7
 
 AUTH_PROFILE_MODULE = 'account.UserProfile'
+
+

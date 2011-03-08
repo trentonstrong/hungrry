@@ -1,20 +1,9 @@
 
 <!-- Logo and basic account functionality bar -->
-<div id="masthead_bar">
-		<span class="float_left">
-			<a href="/" title="Home">
-				<img href="{{ STATICFILES_URL }}/images/logo.png" id="logo" height="40px" width="110px" />
-			</a>
-		</span>
-		
-		<form id="site_search" class="search float_left" action="."	method="get">
-			<input type="text" maxlength="100" name="search_text" />
-			<input type="submit" value="Search" />
-		</form>
-
-		<span class="float_right">
+<div id="topbar">
+		<span style="float:right;">
 				{% if user.is_authenticated %}
-				<a class="right_spacer" href="#">{{ user.username }}</a>	
+				<a class="right_spacer" href="{% url account_profile %}">{{ user.username }}</a>	
 				<a href="{% url auth_logout %}">Sign Out</a>
 				{% else %}
 				<a class="right_spacer" href="{% url registration_register %}">Create An Account</a>
