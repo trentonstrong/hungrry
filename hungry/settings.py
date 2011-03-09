@@ -1,5 +1,7 @@
 import os
 
+ROOT_PATH = os.path.dirname(__file__)
+
 # DEBUG Settings
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -61,7 +63,7 @@ MEDIA_URL = ''
 STATIC_URL = "/static/"
 
 STATICFILES_DIRS = (
-    '/home/trent/Development/hungerstatus/hungry/static',
+    os.path.join(ROOT_PATH, 'static'),
 )
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
@@ -112,7 +114,7 @@ ROOT_URLCONF = 'hungry.urls'
 
 # Search directories for templates
 
-ROOT_PATH = os.path.dirname(__file__)
+
 TEMPLATE_DIRS = (
     os.path.join(ROOT_PATH,'templates'),
 )
