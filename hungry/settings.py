@@ -125,7 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account',
+    'accounts',
     'registration',
     'media',
     # Uncomment the next line to enable the admin:
@@ -145,6 +145,6 @@ if (DEBUG):
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
-AUTH_PROFILE_MODULE = 'account.UserProfile'
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 

@@ -1,0 +1,39 @@
+{% extends "accounts/account_profile.html" %}
+
+{% block title %}Update Profile{% endblock %}
+
+{% block profile_header %}Update Profile Information{% endblock %}
+
+{% block profile_form %}
+
+<form action="." method="POST">
+		{% csrf_token %}
+		<table class="site_form_table">
+				{{ form.as_table }}
+		</table>
+		<p><strong>Note:</strong> Providing your zip code helps us serve you more interesting videos.</p>
+		<input type="submit" value="Submit" />
+</form>
+
+<br />
+
+<h3>Change Profile Picture</h3>
+
+<form id="photo_form" action="http://api2.transloadit.com/assemblies" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+		<input type="hidden" name="params" value="{{ params }}" />
+        <input type="file" name="my_file" />
+        <input type="hidden" name="signature" value="{{ signature }}" />
+		<input type="submit" value="Upload" />
+</form>
+
+<script type="text/javascript">
+   // We call .transloadit() after the DOM is initialized:
+   $(document).ready(function() {
+     $('#photo_form').transloadit({
+        wait: true,
+     });
+   });
+</script>
+
+{% endblock %}

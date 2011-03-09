@@ -1,3 +1,0 @@
-#!/home/trent/Development/hungerstatus/bin/python
-from pylint.checkers import similar
-similar.run()
