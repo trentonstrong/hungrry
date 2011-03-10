@@ -76,6 +76,7 @@ def deploy():
     # -r recurse into directories
     # -v increase verbosity
     # -z compress file data during the transfer
+    os.environ['RSYNC_PASSWORD'] = env.password
     extra_opts = '--omit-dir-times'
     rsync_project(
         env.root,
