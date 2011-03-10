@@ -34,6 +34,7 @@ def staging():
     """ use staging environment on remote host"""
     env.user = 'hungry'
     env.environment = 'staging'
+    env.password = 'hyperspacen'
     env.hosts = ['184.106.231.181']
     _setup_path()
 
