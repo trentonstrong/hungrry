@@ -146,4 +146,4 @@ def reset_local_media():
     """ Reset local media from remote host """
     require('root', provided_by=('staging', 'production'))
     media = os.path.join(env.code_root, 'media', 'upload')
-    local('rsync -rvaz %s@%s:%s media/' % (env.user, env.hosts[0], media))
+    local('yes | rsync -rvaz %s@%s:%s media/' % (env.user, env.hosts[0], media))
