@@ -3,7 +3,4 @@ Jinja2==2.5.5
 django-registration==0.7
 django-storages==1.1.1
 psycopg2==2.3.2
-virtualenv==1.4.9
-virtualenvwrapper==2.2.1
 unittest2==0.5.1
-fabric==1.0.0

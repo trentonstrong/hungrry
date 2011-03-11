@@ -1,6 +1,7 @@
 import os
 
 from fabric.api import *
+from fabric.context_managers import path
 from fabric.contrib.project import rsync_project
 from fabric.contrib import files, console
 from fabric import utils
@@ -15,19 +16,24 @@ RSYNC_EXCLUDE = (
     '*.db',
     'media/admin',
     'media/attachments',
+
     'local_settings.py',
     'fabfile.py',
     'bootstrap.py',
 )
 env.home = '/home/hungry/'
+env.git = 'git://github.com/trentonstrong/hungrry.git'
+env.repo = 'hungrry'
 env.project = 'hungry'
 
 
 def _setup_path():
     env.root = os.path.join(env.home, 'www', env.environment)
-    env.code_root = os.path.join(env.root, env.project)
+    env.repo_root = os.path.join(env.root, env.repo)
+    env.code_root = os.path.join(env.root, env.repo, env.project)
     env.virtualenv_root = os.path.join(env.root, 'env')
     env.settings = '%(project)s.settings_%(environment)s' % env
+    env.python = os.path.join(env.virtualenv_root, 'bin/python')
 
 
 def staging():
@@ -61,8 +67,14 @@ def create_virtualenv():
     run('virtualenv %s %s' % (args, env.virtualenv_root))
 
 
+def _activate():
+    """ activates virtualenv """
+    with cd(env.virtualenv_root):
+        run('source bin/activate')
+
+
 def deploy():
-    """ rsync code to remote host """
+    """ check out code on remote host """
     require('root', provided_by=('staging', 'production'))
     if env.environment == 'production':
         if not console.confirm('Are you sure you want to deploy production?',
@@ -76,24 +88,33 @@ def deploy():
     # -r recurse into directories
     # -v increase verbosity
     # -z compress file data during the transfer
-    os.environ['RSYNC_PASSWORD'] = env.password
-    extra_opts = '--omit-dir-times'
-    rsync_project(
-        env.root,
-        exclude=RSYNC_EXCLUDE,
-        delete=True,
-        extra_opts=extra_opts,
-    )
+    #extra_opts = '--omit-dir-times'
+    #rsync_project(
+    #    env.root,
+    #    exclude=RSYNC_EXCLUDE,
+    #    delete=True,
+    #    extra_opts=extra_opts,
+    #)
+    with cd(env.root):
+        if (files.exists(env.repo_root)):
+            run('rm -r %s' % env.repo_root)
+        run('git clone %s' % env.git)
+    _activate()
+    with cd(env.code_root):
+        run('python manage.py syncdb')
     touch()
 
 
 def update():
     """ update code from source control on remote host """
-    require('code_root', provided_by=('staging', 'production'))
-    with cd(env.code_root):
+    require('repo_root', provided_by=('staging', 'production'))
+    with cd(env.repo_root):
         run('git checkout master')
         run('git pull')
     update_requirements()
+    with cd(env.code_root):
+        run('%s manage.py syncdb' % env.python)
+
 
 def update_requirements():
     """ update external dependencies on remote host """
