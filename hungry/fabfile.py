@@ -87,6 +87,14 @@ def deploy():
     touch()
 
 
+def update():
+    """ update code from source control on remote host """
+    require('code_root', provided_by=('staging', 'production'))
+    with cd(env.code_root):
+        run('git checkout master')
+        run('git pull')
+    update_requirements()
+
 def update_requirements():
     """ update external dependencies on remote host """
     require('code_root', provided_by=('staging', 'production'))
