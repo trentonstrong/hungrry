@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 from hungry import settings
 
-from media.models import Media
+from hungry.media.models import Media
 
 # Returns the media upload path for a user
 #
