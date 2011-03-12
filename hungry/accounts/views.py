@@ -12,8 +12,8 @@ from django.contrib.auth.decorators import login_required
 from hungry import settings
 from hungry.media.models import Media
 
-from accounts.models import UserProfile
-from accounts.forms import ProfileForm, ProfilePhotoForm
+from hungry.accounts.models import UserProfile
+from hungry.accounts.forms import ProfileForm, ProfilePhotoForm
 
 
 @login_required
