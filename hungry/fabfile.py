@@ -41,9 +41,8 @@ def staging():
     env.user = 'hungry'
     env.environment = 'staging'
     env.password = 'hyperspacen'
-    env.hosts = ['184.106.231.181']
+    env.hosts = ['50.56.83.252']
     _setup_path()
-
 
 def production():
     """ use production environment on remote host"""
@@ -58,6 +57,7 @@ def bootstrap():
     create_virtualenv()
     deploy()
     update_requirements()
+    syncdb()
 
 
 def create_virtualenv():
@@ -71,6 +71,10 @@ def _activate():
     """ activates virtualenv """
     with cd(env.virtualenv_root):
         run('source bin/activate')
+
+def _deactivate():
+    """ deactivates virtualenv """
+    run('deactivate')
 
 
 def deploy():
@@ -97,12 +101,14 @@ def deploy():
     #)
     with cd(env.root):
         if (files.exists(env.repo_root)):
-            run('rm -r %s' % env.repo_root)
+            run('yes | rm -r %s' % env.repo_root)
         run('git clone %s' % env.git)
+    touch()
+
+def syncdb():
     _activate()
     with cd(env.code_root):
         run('python manage.py syncdb')
-    touch()
 
 
 def update():
