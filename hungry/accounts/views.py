@@ -112,7 +112,8 @@ def profile_photo(request, username):
         except:
             pass
 
-        return redirect('accounts.views.profile')
+        return redirect('hungry.accounts.views.profile')
+
 
 
 
