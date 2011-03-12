@@ -1,13 +1,13 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
 
-from index.views import index
+from hungry.index.views import index
 
 from registration.views import activate
 from registration.views import register
 from registration.forms import RegistrationFormTermsOfService
 
-from accounts.views import profile, profile_update, profile_photo
+from hungry.accounts.views import profile, profile_update, profile_photo
 
 urlpatterns = patterns('',
                        # User Profile Pages

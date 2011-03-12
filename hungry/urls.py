@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from index.views import index
+from hungry.index.views import index
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -13,7 +13,7 @@ urlpatterns = patterns('',
 		name='homepage'),
 
     url(r'^accounts/',
-	 include('accounts.urls')),
+	 include('hungry.accounts.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
