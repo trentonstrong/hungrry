@@ -2,6 +2,6 @@ Thanks for registering for the site.  You're only a few clicks away from getting
 
 Simply click on the link below or copy/paste it to your address bar to confirm your registration:
 
-http://localhost/account/activate/{{ activation_key }}
+http://hungrry.com/accounts/activate/{{ activation_key }}
 
 Thanks!
