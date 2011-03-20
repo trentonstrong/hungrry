@@ -4,15 +4,11 @@
 
 {% block content %}
 
-
-
-
 <h3>
 		Profile overview for {{ user.username }}
 </h3>
 
 <div class="profile_info">	
-	{{ profile.profile_image.thumbnail_tag }}
 	<p>User since {{ user.date_joined }}</p>
 	<p>First name: {{ user.first_name }}</p>
 	<p>Last name: {{ user.last_name }}</p>
@@ -33,6 +29,5 @@
 
 	{% block profile_form %}{% endblock %}
 </div>
-
 
 {% endblock %}

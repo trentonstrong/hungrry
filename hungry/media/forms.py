@@ -14,30 +14,30 @@ from hungry.media.models import Media
 
 
 def make_params(redirect_url=None, transloadit_template=None):
-        """
-        Function to create JSON params for Transloadit upload form
-        """
-        
-        # Transloadit upload form information
-        expires = datetime.utcnow()+ timedelta(minutes=10)
-        expires = expires.strftime('%Y/%m/%d %H:%M:%S+00:00')
+    """
+    Function to create JSON params for Transloadit upload form
+    """
+    
+    # Transloadit upload form information
+    expires = datetime.utcnow()+ timedelta(minutes=10)
+    expires = expires.strftime('%Y/%m/%d %H:%M:%S+00:00')
 
-        if (redirect_url == None):
-            redirect_url = reverse('media_upload')
-            redirect_url = request.build_absolute_uri(redirect_url)
+    if (redirect_url == None):
+        redirect_url = reverse('media_upload')
+        redirect_url = request.build_absolute_uri(redirect_url)
 
-        template_name = transloadit_template or 'media_upload'
+    template_name = transloadit_template or 'media_upload'
 
-        transloadit_params = json.dumps({
-            "auth": {
-                "key": settings.TRANSLOADIT_KEY,
-                "expires": expires
-            },
-            "template_id": settings.TRANSLOADIT_TEMPLATES[template_name],
-            "redirect_url": redirect_url
-        })
+    transloadit_params = json.dumps({
+        "auth": {
+            "key": settings.TRANSLOADIT_KEY,
+            "expires": expires
+        },
+        "template_id": settings.TRANSLOADIT_TEMPLATES[template_name],
+        "redirect_url": redirect_url
+    })
 
-        return transloadit_params
+    return transloadit_params
 
 def sign(params):
     """
