@@ -1,6 +1,0 @@
-from caktus_website.settings import *
-
-DEBUG = True
-
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = 'caktus_website.db'
