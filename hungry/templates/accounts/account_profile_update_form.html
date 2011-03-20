@@ -19,11 +19,9 @@
 
 <h3>Change Profile Picture</h3>
 
-<form id="photo_form" action="http://api2.transloadit.com/assemblies" method="POST" enctype="multipart/form-data">
+<form id="photo_form" action="{{ transloadit_url }}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-		<input type="hidden" name="params" value="{{ params }}" />
-        <input type="file" name="my_file" />
-        <input type="hidden" name="signature" value="{{ signature }}" />
+		{{ transloadit_form.as_p }}
 		<input type="submit" value="Upload" />
 </form>
 

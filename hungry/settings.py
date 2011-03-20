@@ -85,7 +85,7 @@ AWS_SECRET = '7pej0F97SrhYVvxi0Y7Gx3FEPACOC5kBalApfgzx'
 
 TRANSLOADIT_KEY = '6311ca78f89642a1a4d2ae70fceacf57'
 TRANSLOADIT_SECRET = '870488d461d0706cefc9ee90e5bab6b68df1411b'
-
+TRANSLOADIT_URL = 'http://api2.transloadit.com/assemblies'
 TRANSLOADIT_TEMPLATES = {
     'profile_photo': 'a6010eb2b85f46d5b25ba719a49f855b',
 }

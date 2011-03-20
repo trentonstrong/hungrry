@@ -1,9 +1,6 @@
-# Account views
-from datetime import datetime, timedelta
-import hashlib
-import hmac
-import json
-
+"""
+Views for the account application
+"""
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
@@ -11,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 from hungry import settings
 from hungry.media.models import Media
+from hungry.media.forms import TransloaditUploadForm, TransloaditResponseForm
 
 from hungry.accounts.models import UserProfile
 from hungry.accounts.forms import ProfileForm, ProfilePhotoForm
@@ -51,35 +49,21 @@ def profile_update(request):
             
     else:
         form = ProfileForm()
-        
-        # Transloadit upload form information
-        expires = datetime.utcnow()+ timedelta(minutes=10)
-        expires = expires.strftime('%Y/%m/%d %H:%M:%S+00:00')
-        
-        # Callback URL for Transloadit
-        redirect_url = reverse('account_profile_photo', kwargs={ 'username': request.user.username })
-        redirect_url = request.build_absolute_uri(redirect_url)
 
-        transloadit_params = json.dumps({
-            "auth": { 
-                "key": settings.TRANSLOADIT_KEY,
-                "expires": expires
-            },
-            "template_id": settings.TRANSLOADIT_TEMPLATES['profile_photo'],
-            "redirect_url": redirect_url
-        })
-
-        # Transloadit signature algorithm: HMAC of auth dictionary JSON w/ secret as key using SHA1
-        transloadit_signature = hmac.new(
-            settings.TRANSLOADIT_SECRET,
-            transloadit_params,
-            hashlib.sha1).hexdigest()
+    # Callback URL for Transloadit
+    redirect_url = reverse('account_profile_photo', kwargs={ 'username': request.user.username })
+    redirect_url = request.build_absolute_uri(redirect_url)
+    transloadit_form = TransloaditUploadForm(
+        user,
+        redirect_url=redirect_url,
+        transloadit_template='profile_photo'
+    )
 
     return render_to_response('accounts/account_profile_update_form.html',
                                 {'profile': profile,
                                 'form': form,
-                                'params': transloadit_params,
-                                'signature': transloadit_signature },
+                                'transloadit_form': transloadit_form,
+                                'transloadit_url': settings.TRANSLOADIT_URL},
                                 context_instance=RequestContext(request))
 
 
@@ -87,30 +71,21 @@ def profile_photo(request, username):
     profile = request.user.get_profile()
 
     if(request.method == 'POST'):
+        response_form = TransloaditResponseForm(request.POST)
+        if (not response_form.is_valid()):
+            raise Http500
+    
         try:
-            upload_info = json.loads(request.POST['transloadit'])
-            upload_results = upload_info['results']
-            upload_media, upload_thumb = upload_results['media'][0], upload_results['thumb'][0]
-
-            avatar = Media()
-            avatar.name = upload_media['name']
-            avatar.url = upload_media['url']
-            avatar.thumbnail = upload_thumb['url']
-            avatar.mime_type = upload_media['mime']
-            avatar.metadata = json.dumps(upload_media['meta'])
-        except KeyError:
-            pass
-
-        try:
+            avatar = response_form.get_media()
             avatar.save()
         except:
-            pass
+            raise
 
         try:
             profile.avatar = avatar
             profile.save()
         except:
-            pass
+            raise
 
         return redirect('hungry.accounts.views.profile')
 
