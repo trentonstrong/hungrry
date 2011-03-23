@@ -1,14 +1,11 @@
 
 <!-- Logo and basic account functionality bar -->
-<div id="topbar">
-		<span style="float:right;">
 				{% if user.is_authenticated %}
-				<a class="right_spacer" href="{% url account_profile %}">{{ user.username }}</a>	
-				<a href="{% url auth_logout %}">Sign Out</a>
+				<a class="right_spacer" href="{% url account_profile %}">{{ user.username }}</a><br>
+				<a href="{% url auth_logout %}">Sign Out</a><br>
 				{% else %}
-				<a class="right_spacer" href="{% url registration_register %}">Create An Account</a>
-				<a href="{% url auth_login %}">Sign In</a>
+				<a class="right_spacer" href="{% url registration_register %}">Create An Account</a><br>
+				<a href="{% url auth_login %}">Sign In</a><br>
 				{% endif %}
-		</span>
-</div>
+
 

@@ -31,6 +31,7 @@
     <header>
 	<div id="header">
 		<div id="headerleft">
+      	 	{% include "_topbar.html" %}
 			<a href="index.html"><img src="{{ STATIC_URL }}images/logo_wb.png" border="0"></a>
 		</div>
 		<div id="headermiddle">
@@ -42,21 +43,20 @@
 	</div>
     </header>
 
-    
-	<div id="homeleft">
-		<div id="userbox">
+    <div id="main">
+		<div iimagesd="homeleft">
 			{% block content %}
-		     {% include "_topbar.html" %}
+			    <h2>WELCOME HOME</h2>
             {% endblock %}
 		</div>
-		<div id="userbox">
-			plateentry
+		<div id="homeright">
+			<h1>how hungry are you?:</h1>
 		</div>
-    </div>
-
+    </div><!-- end of main -->
+    
     <footer>
 	<div id="footer">
-		&copy; Hungrry.com 2011
+		&copy; Hungerstatus.com 2010
 	</div>
     </footer>
 
