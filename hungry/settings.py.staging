@@ -128,10 +128,14 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hungry.accounts',
+    'django.contrib.gis',
     'registration',
     'debug_toolbar',
+    'south',
+    'hungry.index',
+    'hungry.accounts',
     'hungry.media',
+    'hungry.dining',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
