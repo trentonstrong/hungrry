@@ -5,6 +5,6 @@ from django.template import RequestContext
 # Homepage
 def index(request):
     
-    return render_to_response('index.html',
+    return render_to_response('index/index.html',
                               {},
                               context_instance=RequestContext(request))
