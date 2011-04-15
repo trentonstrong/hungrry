@@ -1,0 +1,223 @@
+body{
+	margin: 10px 10px 0px 10px;
+	font-family: arial, verdana, sans-serif;
+	font-size: 12px;
+	background: url('black80.gif') repeat-x;
+}#master{
+	width: 980px;
+	margin: 0px auto 0px auto;
+	padding: 0px;
+}a {
+	color: #00f;
+	text-decoration: none;
+}h2 {
+	font-size: 18px;
+	font-weight: normal;
+	color: #fff;
+	margin: 0px 0px 5px 0px;
+}h3 {
+	font-size: 30px;
+	font-weight: normal;
+	color: #000;
+	margin: 0px 0px 5px 0px;
+}.signup{
+    font-size: 30px;
+	font-weight: normal;
+	color: #fff;
+	margin: 0px 0px 5px 0px;
+}.signup a{
+    font-size: 30px;
+	font-weight: normal;
+	text-decoration: underline;
+	background: #fff;
+	margin: 0px 0px 5px 0px;
+}.whitetype{
+	color: #fff;
+}
+
+/* FORM STYLING */
+.texta {  
+  font-size: 12px;  
+  background-color: #fff; 
+  height: 24px;
+  width: 170px;
+}  
+
+/* HEADER */
+#header{
+	width: 980px;
+	height: 70px;
+	margin: 0px 0px 20px 0px;
+	padding: 0px;
+	display: block;
+}#headerleft{
+	width: 320px;
+	margin: 0px 10px 0px 0px;
+	display: inline;
+	float: left;
+}#headermiddle{
+	margin: 10px 10px 0px 0px;
+	padding: 0px;
+	width: 320px;	
+	height: 60px;
+	display: inline;
+	float: left;
+	border: 0px solid #ccc;
+	background: #000;
+}#headerright{
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	width: 320px;
+	height: 70px;	
+	display: inline;
+	float: left;
+	background: #000;
+}#headerdouble{
+    width: 650px;
+    height: 65px;
+    margin: 5px 0px 0px 0px;
+    display: inline;
+	float: left;
+	background: #000;
+}#headerdoubleblock{
+    width: 172px;
+    margin: 5px 0px 0px 8px;
+    display: inline;
+	float: left;
+	background: #000;
+}
+/* END HEADER */
+
+#wholeblock{
+	width: 980px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	display: block; 
+	background: #fff;
+	text-align: left;
+}#draw{
+    width: 310px;
+    height: 280px;
+    margin: 0px 10px 0px 0px;
+    display: inline;
+    float: left;
+    border: 5px solid #000;
+    text-align: center;
+}#drawend{
+    width: 310px;
+    height: 280px;
+    margin: 0px 0px 0px 0px;
+    display: inline;
+    float: left;
+    border: 5px solid #000;
+    text-align: center;
+}#homeleft{
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	width: 660px;	
+	height: 500px;
+	display: inline;
+	float: left;
+	background: #fff;
+}#userbox{
+	margin: 0px 10px 0px 0px;
+	padding: 0px;
+	width: 320px;	
+	height: 140px;
+	display: inline;
+	float: left;
+	background: #fff;
+}#userbox img{
+	float: left;
+}#userboxtitle{
+    width: 310px;
+	margin: 0px 0px 10px 0px;
+	padding: 4px 0px 0px 10px;	
+	display: inline;
+	float: left;
+	background: #000;
+}#userhello{
+	width: 240px;
+	height: 70px;
+	display: inline;
+	float: right;
+	background: #fff;
+}#plateentry{
+	width: 320px;
+	height: 16px;
+	margin: 0px 0px 4px 0px;
+	display: block;
+	float: left;
+	background: #fff;
+}#localfeed{
+	width: 660px;
+	margin: 20px 0px 0px 0px;
+	display: block;
+	float: left;
+	background: #fff;
+}#localfeedtitle{
+	width: 640px;
+	display: block;
+	float: left;
+	margin: 0px 0px 10px 0px;
+	padding: 4px 0px 0px 10px;
+	background: #000;
+}#localuser{
+	margin: 0px 10px 10px 0px;
+	padding: 0px;
+	width: 320px;	
+	height: 100px;
+	border-bottom: 1px solid #ccc;
+	display: inline;
+	float: left;
+}#localuser img{
+	float: left;
+	margin: 0px 7px 20px 0px;
+}#footer{
+    width: 980px;
+	height: 70px;
+	margin: 0px 0px 10px 0px;
+	padding: 0px;
+	display: block;
+	float: left;
+	background: #fff;
+}#footerbox{
+	margin: 0px 10px 0px 0px;
+	padding: 0px;
+	width: 320px;	
+	height: 100px;
+	display: inline;
+	float: left;
+	background: #fff;
+}#footerfinal{
+	margin: 10px 0px 0px 0px;
+	padding: 5px 0px 0px 0px;
+	width: 980px;	
+	height: 50px;
+	text-align: center;
+	display: inline;
+	float: left;
+	border-top: 1px solid #000;
+	background: #fff;
+}#footerboxend{
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	width: 320px;	
+	height: 100px;
+	display: inline;
+	float: left;
+	background: #fff;
+}#footertitle{
+    width: 315px;	
+	height: 16px;
+	background: #000;
+	margin: 0px 0px 4px 0px;
+	padding: 2px 0px 0px 5px;
+	display: block;
+	float: left;
+}.footertitlecopy{
+    color: #fff;
+}.footercopy{
+    font-size: 12px;
+    line-height: 16px;
+}
