@@ -1,5 +1,47 @@
 
-<!-- Logo and basic account functionality bar -->
+<!-- header -->
+	<div id="header">
+		<div id="headerleft">
+			<img src="{{ STATIC_URL }}images/logo_wb2.png" border="0">
+		</div>
+
+		{% if user.is_authenticated %}
+		<div id="headermiddle">
+			b
+		</div>
+		<div id="headerright">
+			c
+		</div>
+
+		{% else %}
+
+		<div id="headerdouble">
+			<form action="//accounts/login" method="POST">
+			{% csrf_token %}
+
+			<div id="headerdoubleblock">
+				<span class="whitetype">Email:</span>
+			</div>
+			<div id="headerdoubleblock">
+				<span class="whitetype">Password:</span>
+			</div>
+			<div id="headerdoubleblock">&nbsp;</div>
+			
+			<div id="headerdoubleblock">
+				<input type="text" name="username" class="texta" />
+			</div>
+			<div id="headerdoubleblock">
+				<input type="password" name="password" class="texta" />
+			</div>
+			<div id="headerdoubleblock"><span class="whitetype">log in</span></div>
+
+		
+			</form>
+		</div>
+		{% endif %}
+
+	</div>
+<!-- header -->
 				{% if user.is_authenticated %}
 				<a class="right_spacer" href="{% url account_profile %}">{{ user.username }}</a><br>
 				<a href="{% url auth_logout %}">Sign Out</a><br>
@@ -7,5 +49,4 @@
 				<a class="right_spacer" href="{% url registration_register %}">Create An Account</a><br>
 				<a href="{% url auth_login %}">Sign In</a><br>
 				{% endif %}
-
 
