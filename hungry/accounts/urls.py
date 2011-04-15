@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from django.views.generic.simple import direct_to_template
+from django.views.generic.simple import direct_to_template, redirect_to
 
 from hungry.index.views import index
 
@@ -10,6 +10,10 @@ from registration.forms import RegistrationFormTermsOfService
 from hungry.accounts.views import profile, profile_update, profile_photo
 
 urlpatterns = patterns('',
+                       url(r'^$',
+                           redirect_to,
+                           {'url': 'profile/' }),
+
                        # User Profile Pages
 					   url(r'^profile/(?P<username>\w+)/$',
 						   direct_to_template,
@@ -22,7 +26,7 @@ urlpatterns = patterns('',
 						   name='account_profile'),
 
                        # Update user profile
-                       url(r'^profile/update$',
+                       url(r'^profile/update/$',
                            profile_update,
                            name='account_profile_update'),
                        

@@ -13,7 +13,10 @@ urlpatterns = patterns('',
 		name='homepage'),
 
     url(r'^accounts/',
-	 include('hungry.accounts.urls')),
+	    include('hungry.accounts.urls')),
+
+    url(r'^media/',
+        include('hungry.media.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

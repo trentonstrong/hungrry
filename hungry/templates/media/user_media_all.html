@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+
+<h2>{{ user.username}}'s stuff</h2>
+
+<ul>
+{% for album in albums %}
+    <li><a href="{% url user_album username=user.username albumid=album.id }}" >{{ album.name }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

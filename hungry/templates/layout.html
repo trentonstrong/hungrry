@@ -29,35 +29,15 @@
   <div id="master">
 
     <header>
-	<div id="header">
-		<div id="headerleft">
-			<a href="index.html"><img src="{{ STATIC_URL }}images/logo_wb.png" border="0"></a>
-		</div>
-		<div id="headermiddle">
-			b
-		</div>
-		<div id="headerright">
-			c
-		</div>
-	</div>
+	{% include "_header.html" %}
     </header>
 
-    
-	<div id="homeleft">
-		<div id="userbox">
-			{% block content %}
-		     {% include "_topbar.html" %}
-            {% endblock %}
-		</div>
-		<div id="userbox">
-			plateentry
-		</div>
+    <div id="content">
+        {% block content %}{% endblock %}
     </div>
-
+	
     <footer>
-	<div id="footer">
-		&copy; Hungrry.com 2011
-	</div>
+	{% include "_footer.html" %}
     </footer>
 
   </div> <!-- end of #master -->
