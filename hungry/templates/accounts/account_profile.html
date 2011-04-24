@@ -5,7 +5,7 @@
 {% block content %}
 
 <h3>
-		Profile overview for {{ user.username }}
+	Profile overview for {{ user.username }}
 </h3>
 
 <div class="profile_info">	
@@ -16,9 +16,6 @@
 	<p>Zip Code: {{ profile.zip_code }}</p>
     {{ profile.avatar.thumb_tag }}
     <br />
-	<div>
-			<a href="{% url hungry.accounts.views.profile_update %}">Update Profile Information</a>
-	</div>
 </div>
 
 <div class="profile_form clear">
@@ -30,4 +27,14 @@
 	{% block profile_form %}{% endblock %}
 </div>
 
+<h3>
+    Albums
+</h3>
+<ul id="user-albums" class="albums">
+    {% for album in user_albums %}
+        <li id="album-{{ album.slug }}">
+            <a href="{% url hungry.media.views.user_album user.username album.slug %}">{{ album.name }}</a>
+        </li>
+    {% endfor %}
+</div>
 {% endblock %}

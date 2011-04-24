@@ -10,13 +10,14 @@
 			b
 		</div>
 		<div id="headerright">
-			c
+			<a class="right_spacer" href="{% url self_profile %}">{{ user.username }}</a>
+			<a href="{% url auth_logout %}">Sign Out</a>
 		</div>
 
 		{% else %}
 
 		<div id="headerdouble">
-			<form action="//accounts/login" method="POST">
+			<form action="{% url auth_login %}" method="POST">
 			{% csrf_token %}
 
 			<div id="headerdoubleblock">
@@ -33,7 +34,7 @@
 			<div id="headerdoubleblock">
 				<input type="password" name="password" class="texta" />
 			</div>
-			<div id="headerdoubleblock"><span class="whitetype">log in</span></div>
+			<div id="headerdoubleblock"><span class="whitetype"><input type="submit" value="log in" /></span></div>
 
 		
 			</form>
@@ -42,11 +43,3 @@
 
 	</div>
 <!-- header -->
-				{% if user.is_authenticated %}
-				<a class="right_spacer" href="{% url account_profile %}">{{ user.username }}</a><br>
-				<a href="{% url auth_logout %}">Sign Out</a><br>
-				{% else %}
-				<a class="right_spacer" href="{% url registration_register %}">Create An Account</a><br>
-				<a href="{% url auth_login %}">Sign In</a><br>
-				{% endif %}
-

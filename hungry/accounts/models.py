@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 from hungry import settings
 
-from hungry.media.models import Media
+from hungry.media.models import Media, UserAlbum
 
 
 
@@ -20,3 +20,5 @@ class UserProfile(models.Model):
         zip_code = models.CharField(max_length = 9)
 
         avatar = models.ForeignKey(Media, null = True)
+
+        profile_album = models.ForeignKey(UserAlbum, null = True)

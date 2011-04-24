@@ -2,10 +2,9 @@ import os
 import sys
 import site
 
-HOME = '/home/hungry/'
-PROJECT_ROOT = os.path.join(HOME, 'hungrry')
-CODE_ROOT = os.path.join(PROJECT_ROOT, 'hungry')
-site_packages = os.path.join(HOME, '.virtualenvs/hungry/lib/python2.6/site-packages')
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+CODE_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+site_packages = os.path.join(PROJECT_ROOT, 'env/lib/python2.6/site-packages')
 site.addsitedir(os.path.abspath(site_packages))
 sys.path.insert(0, PROJECT_ROOT)
 sys.path.insert(0, CODE_ROOT)

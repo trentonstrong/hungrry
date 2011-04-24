@@ -14,27 +14,32 @@ from hungry.accounts.models import UserProfile
 from hungry.accounts.forms import ProfileForm, ProfilePhotoForm
 
 
-@login_required
 def profile(request):
+    if 'username' in request.GET:
+        user = User.objects.select_related().get(username=request.GET['username'])
+        if user is None:
+            raise Http404
+    else:
+        if request.user.is_authenticated():
+            user = request.user
+        else:
+            return redirect('auth_login')
+
     profile = None
     try:
-        profile = request.user.get_profile()
+        profile = user.get_profile()
     except (UserProfile.DoesNotExist):
         profile = UserProfile()
-        profile.user = request.user
+        profile.user = user
         profile.save()
 
     if profile == None:
         raise Http404
 
-    return render_to_response('accounts/account_profile.html',
-                                {'profile': profile},
-                                context_instance=RequestContext(request))
-
-@login_required
-def profile_update(request):
-    user = request.user
-    profile = user.get_profile()
+    if user.id == request.user.id:
+        template = 'accounts/account_profile_update_form.html'
+    else:
+        template = 'accounts/account_profile.html'
 
     if (request.method == 'POST'):
         form = ProfileForm(request.POST)
@@ -51,6 +56,7 @@ def profile_update(request):
         form = ProfileForm()
 
     # Callback URL for Transloadit
+    
     redirect_url = reverse('account_profile_photo', kwargs={ 'username': request.user.username })
     redirect_url = request.build_absolute_uri(redirect_url)
     transloadit_form = TransloaditUploadForm(
@@ -59,15 +65,18 @@ def profile_update(request):
         transloadit_template='profile_photo'
     )
 
-    return render_to_response('accounts/account_profile_update_form.html',
+    user_albums = user.useralbum_set.select_related()
+
+    return render_to_response(template,
                                 {'profile': profile,
-                                'form': form,
-                                'transloadit_form': transloadit_form,
-                                'transloadit_url': settings.TRANSLOADIT_URL},
+                                 'form': form,
+                                 'transloadit_form': transloadit_form,
+                                 'transloadit_url': settings.TRANSLOADIT_URL,
+                                 'user_albums': user_albums},
                                 context_instance=RequestContext(request))
 
-
 def profile_photo(request, username):
+    """ Callback handler for Transloadit uploads """
     profile = request.user.get_profile()
 
     if(request.method == 'POST'):
@@ -84,6 +93,7 @@ def profile_photo(request, username):
         try:
             profile.avatar = avatar
             profile.save()
+            profile.profile_album.media.add(avatar)
         except:
             raise
 

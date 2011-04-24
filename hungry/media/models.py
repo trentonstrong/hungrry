@@ -1,8 +1,12 @@
 import json
+from datetime import date
 
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
+from django.dispatch import dispatcher
+from django.db.models import signals
+from django.template.defaultfilters import slugify
 
 """
 media.models
@@ -29,6 +33,8 @@ class Media(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     last_modified = models.DateTimeField(auto_now=True)
+    
+    uploaded_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def media_tag(self):
         metadata = json.loads(self.metadata)
@@ -55,3 +61,22 @@ class UserAlbum(models.Model):
     is_public = models.BooleanField(default=True)
 
     media = models.ManyToManyField(Media)
+    
+    @classmethod
+    def user_post_save(sender, instance, created, **kwargs):
+        """ Creates default photo album for new user accounts """
+        if created:
+            instance.useralbum_set.create(
+                name="Profile Pictures",
+                is_public=True
+            )
+    
+    @classmethod
+    def album_pre_save(sender, instance, created, **kwargs):
+        """ Handles pre album save actions, such as creating slugs """
+        instance.slug = "%s-%s" % (date.today().isoformat(), instance.slugify(instance.name))
+
+
+
+# Register signals
+signals.post_save.connect(UserAlbum.user_post_save, sender=User)

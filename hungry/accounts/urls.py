@@ -7,7 +7,7 @@ from registration.views import activate
 from registration.views import register
 from registration.forms import RegistrationFormTermsOfService
 
-from hungry.accounts.views import profile, profile_update, profile_photo
+from hungry.accounts.views import profile, profile_photo
 
 urlpatterns = patterns('',
                        url(r'^$',
@@ -15,20 +15,14 @@ urlpatterns = patterns('',
                            {'url': 'profile/' }),
 
                        # User Profile Pages
-					   url(r'^profile/(?P<username>\w+)/$',
-						   direct_to_template,
-						   {'template': 'accounts/profile_display.html'},
-						   name='user_details'),
+					   url(r'^profile/user/(?P<username>\w+)/$',
+						    profile,
+						   name='user_profile'),
                        
                        # User's own accounts profile
 					   url(r'^profile/$',
 						   profile,
-						   name='account_profile'),
-
-                       # Update user profile
-                       url(r'^profile/update/$',
-                           profile_update,
-                           name='account_profile_update'),
+						   name='self_profile'),
                        
                        # URL for retrieving/setting user profile photo
                        # Currently a callback endpoint for Transloadit upload service

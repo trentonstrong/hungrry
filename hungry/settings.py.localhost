@@ -17,10 +17,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'hungerstatus',                      # Or path to database file if using sqlite3.
-        'USER': 'hungerstatus',                      # Not used with sqlite3.
-        'PASSWORD': 'ttt4283RT',                  # Not used with sqlite3.
+        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'hungry',                      # Or path to database file if using sqlite3.
+        'USER': 'hungry',                      # Not used with sqlite3.
+        'PASSWORD': 'hyperspacen',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -145,7 +145,7 @@ INSTALLED_APPS = (
 # Email Backend Configuration
 if (DEBUG):
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-    EMAIL_FILE_PATH = '/home/trent/Development/hungerstatus/hungry/tmp/mail' # change this to a proper location
+    EMAIL_FILE_PATH = '/home/hungry/hungrry/hungry/tmp/mail' # change this to a proper location
 
 # APPLICATION SPECIFIC SETTINGS
 
