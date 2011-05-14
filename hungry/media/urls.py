@@ -12,7 +12,7 @@ urlpatterns = patterns('',
                             user_album,
                             name='user_album'),
 
-                        url(r'item/(?P<id>\d+/$',
+                        url(r'item/(?P<id>\d+)/$',
                             media_item,
                             name='media_item'),
                         )
