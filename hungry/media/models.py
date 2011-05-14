@@ -63,7 +63,7 @@ class UserAlbum(models.Model):
     media = models.ManyToManyField(Media)
     
     @classmethod
-    def user_post_save(sender, instance, created, **kwargs):
+    def user_post_save(cls, sender, instance, created, **kwargs):
         """ Creates default photo album for new user accounts """
         if created:
             instance.useralbum_set.create(
@@ -72,7 +72,7 @@ class UserAlbum(models.Model):
             )
     
     @classmethod
-    def album_pre_save(sender, instance, created, **kwargs):
+    def album_pre_save(cls, sender, instance, created, **kwargs):
         """ Handles pre album save actions, such as creating slugs """
         instance.slug = "%s-%s" % (date.today().isoformat(), instance.slugify(instance.name))
 
