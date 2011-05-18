@@ -2,18 +2,18 @@
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+small, strong, sub, sup, var, /*b,*/ i, dl, dt, dd, ol, ul, li,
+fieldset,/*form, */ label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure,  footer, header, hgroup, 
 menu, nav, section, summary, time, mark, audio, video {
   margin:0;
   padding:0;
   border:0;
   outline:0;
-  font-size:100%;
+  font-size:12px;
   color: #000;
   vertical-align:baseline;
-  font-family:arial, helvetica, verdana, sans-serif;
+  font-family:arial, verdana, sans-serif;
   background:transparent;
 }                  
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
@@ -40,7 +40,7 @@ body { font:12px/1.231 sans-serif;
 } select, input, textarea, button { font:99% sans-serif; }
 pre, code, kbd, samp { font-family: monospace, sans-serif; }
 
-body, select, input, textarea {   color: #444; }
+body, select, input, textarea {   color: #000; }
 h1{
 font-size: 200%;
 }h2{
@@ -127,7 +127,7 @@ body{
 	text-decoration: underline;
 	background: #fff;
 	margin: 0px 0px 5px 0px;
-}.whitetype{
+}.whitetype, .whitetype a{
 	color: #fff;
 }
 
@@ -135,9 +135,24 @@ body{
 .texta {  
   font-size: 12px;  
   background-color: #fff; 
+  height: 18px;
+  width: 164px;
+  font-family: arial, verdana, sans-serif;
+} .loginbtn {  
+  font-size: 12px;  
+  background-color: #00f; 
+  color: #fff;
+  font-weight: bold;
   height: 24px;
-  width: 170px;
-}  
+  width: 62px;
+  border: 2px solid #fff;
+  padding: 1px 0px 0px 0px;
+  cursor: hand;
+  font-family: arial, verdana, sans-serif;
+}  .loginbtn:hover{  
+  color: #00f;
+  background-color: #fff; 
+} 
 
 /* HEADER */
 #header{
@@ -181,6 +196,12 @@ body{
     display: inline;
 	float: left;
 	background: #000;
+}#loginbutton{
+    width: 62px;
+    height: 17px;
+    margin: 0px 10px 0px 0px;
+    display: inline;
+    float: left;
 }
 /* END HEADER */
 
@@ -316,6 +337,8 @@ body{
 }.footercopy{
     font-size: 12px;
     line-height: 16px;
+}#orsignup{
+    padding: 5px 0px 0px 0px;
 }
 
 
