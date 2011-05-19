@@ -177,9 +177,9 @@ body{
 	background: #000;
 }#headerright{
 	margin: 0px 0px 0px 0px;
-	padding: 0px;
+	padding: 25px 0px 0px 0px;
 	width: 320px;
-	height: 70px;	
+	height: 45px;	
 	display: inline;
 	float: left;
 	background: #000;
@@ -212,22 +212,6 @@ body{
 	display: block; 
 	background: #fff;
 	text-align: left;
-}#draw{
-    width: 310px;
-    height: 280px;
-    margin: 0px 10px 0px 0px;
-    display: inline;
-    float: left;
-    border: 5px solid #000;
-    text-align: center;
-}#drawend{
-    width: 310px;
-    height: 280px;
-    margin: 0px 0px 0px 0px;
-    display: inline;
-    float: left;
-    border: 5px solid #000;
-    text-align: center;
 }#homeleft{
 	margin: 0px 0px 0px 0px;
 	padding: 0px;
@@ -290,10 +274,49 @@ body{
 }#localuser img{
 	float: left;
 	margin: 0px 7px 20px 0px;
+}#wholeblock{
+	width: 980px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	display: block; 
+	background: #fff;
+	text-align: left;
+}#img320{
+    width: 318px;
+    height: 320px;
+    border: 1px solid #ccc;
+    float: left;
+    display: inline;
+}#left3pt{
+	margin: 0px 10px 0px 0px;
+	padding: 0px;
+	width: 320px;	
+	display: inline;
+	float: left;
+}.middle{
+    text-align: center;
+}.profile{
+    line-height: 18px;
+}#graymenu{
+    background: #eee;
+    margin: 0px 10px 10px 0px;
+	width: 290px;	
+    padding: 20px 25px 25px 5px;
+    display: inline;
+	float: left;
+}#draw{
+    width: 310px;
+    height: 280px;
+    display: inline;
+    float: left;
+    border: 5px solid #000;
+    text-align: center;
+}.tenright{
+    margin: 0px 10px 0px 0px;
 }#footer{
     width: 980px;
 	height: 70px;
-	margin: 0px 0px 10px 0px;
+	margin: 10px 0px 10px 0px;
 	padding: 0px;
 	display: block;
 	float: left;

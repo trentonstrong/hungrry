@@ -4,37 +4,35 @@
 
 {% block content %}
 
-<h3>
-	Profile overview for {{ user.username }}
-</h3>
-
-<div class="profile_info">	
+<div id="left3pt">
+	
+	<div id="img320">
+		{{ profile.avatar.thumb_tag }}
+	</div>
+	
 	<p>User since {{ user.date_joined }}</p>
 	<p>First name: {{ user.first_name }}</p>
 	<p>Last name: {{ user.last_name }}</p>
 	<p>Email: {{ user.email }} </p>
 	<p>Zip Code: {{ profile.zip_code }}</p>
-    {{ profile.avatar.thumb_tag }}
     <br />
 </div>
 
-<div class="profile_form clear">
 
-	<h3>
-		{% block profile_header %}{% endblock %}
-	</h3>
+<div id="graymenu">
+	
+	<h3 class="middle">{{ user.username }}</h3><br>
 
-	{% block profile_form %}{% endblock %}
-</div>
+{% block profile_header %}{% endblock %}
+{% block profile_form %}{% endblock %}
+
 
 <h3>
     Albums
 </h3>
-<ul id="user-albums" class="albums">
-    {% for album in user_albums %}
-        <li id="album-{{ album.slug }}">
+    {% for album in user_albums %}  
             <a href="{% url hungry.media.views.user_album user.username album.slug %}">{{ album.name }}</a>
-        </li>
     {% endfor %}
 </div>
+
 {% endblock %}

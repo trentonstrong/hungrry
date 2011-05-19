@@ -6,14 +6,14 @@
 		</div>
 
 		{% if user.is_authenticated %}
+		
 		<div id="headermiddle">
-			b
 		</div>
 		<div id="headerright">
-			<a class="right_spacer" href="{% url self_profile %}">{{ user.username }}</a>
-			<a href="{% url auth_logout %}">Sign Out</a>
+			<!-- these links are placeholders except for 'logout' -->
+			<span class="whitetype">Profile &nbsp; &nbsp; Messages <b>(2)</b> &nbsp; &nbsp; Calendar &nbsp; &nbsp; Friends  &nbsp; &nbsp; <a href="{% url auth_logout %}">Logout</a></span>
 		</div>
-
+		
 		{% else %}
 
 		<div id="headerdouble">
