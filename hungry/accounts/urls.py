@@ -15,7 +15,7 @@ urlpatterns = patterns('',
                            {'url': 'profile/' }),
 
                        # User Profile Pages
-					   url(r'^profile/user/(?P<username>\w+)/$',
+					   url(r'^profile/(?P<username>\w+)/$',
 						    profile,
 						   name='user_profile'),
                        

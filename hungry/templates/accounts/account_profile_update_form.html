@@ -22,7 +22,7 @@
 <form id="photo_form" action="{{ transloadit_url }}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 		{{ transloadit_form.as_p }}
-		<input type="submit" value="Upload" />
+        
 </form>
 
 <script type="text/javascript">
@@ -30,6 +30,9 @@
    $(document).ready(function() {
      $('#photo_form').transloadit({
         wait: true,
+     });
+     $('#id_my_file').change(function(e) {
+        $('#photo_form').submit();
      });
    });
 </script>

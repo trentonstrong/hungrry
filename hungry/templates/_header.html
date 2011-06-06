@@ -11,7 +11,10 @@
 		</div>
 		<div id="headerright">
 			<!-- these links are placeholders except for 'logout' -->
-			<span class="whitetype">Profile &nbsp; &nbsp; Messages <b>(2)</b> &nbsp; &nbsp; Calendar &nbsp; &nbsp; Friends  &nbsp; &nbsp; <a href="{% url auth_logout %}">Logout</a></span>
+			<span class="whitetype">
+                <a href="{% url user_profile user.username %}">{{ user.username }}</a> &nbsp; &nbsp; Messages <b>(2)</b> &nbsp; &nbsp; Calendar &nbsp; &nbsp; Friends  &nbsp; &nbsp; 
+                <a href="{% url auth_logout %}">Logout</a>
+            </span>
 		</div>
 		
 		{% else %}
@@ -40,7 +43,7 @@
 					<input type="submit" value="Login" class="loginbtn"/>
 				</div>
 				<div id="orsignup" class="whitetype">
-					or &nbsp; <b>Sign up!</b>
+					or &nbsp; <b><a href="{% url registration_register %}">Sign Up!</a></b>
 				</div>
 			</div>
 

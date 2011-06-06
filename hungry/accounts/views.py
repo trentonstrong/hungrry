@@ -4,6 +4,7 @@ Views for the account application
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from hungry import settings
@@ -14,16 +15,18 @@ from hungry.accounts.models import UserProfile
 from hungry.accounts.forms import ProfileForm, ProfilePhotoForm
 
 
-def profile(request):
-    if 'username' in request.GET:
-        user = User.objects.select_related().get(username=request.GET['username'])
+def profile(request, username):
+    if username:
+        user = User.objects.select_related().get(username=username)
         if user is None:
             raise Http404
+        template = 'accounts/account_profile.html'
     else:
         if request.user.is_authenticated():
             user = request.user
         else:
             return redirect('auth_login')
+        template = 'accounts/account_profile_update_form.html'
 
     profile = None
     try:
@@ -36,24 +39,19 @@ def profile(request):
     if profile == None:
         raise Http404
 
-    if user.id == request.user.id:
-        template = 'accounts/account_profile_update_form.html'
-    else:
-        template = 'accounts/account_profile.html'
-
-    if (request.method == 'POST'):
-        form = ProfileForm(request.POST)
-        if form.is_valid():
-            user.first_name = form.cleaned_data['first_name']
-            user.last_name = form.cleaned_data['last_name']
-            profile.zip_code = form.cleaned_data['zip_code']
-            user.email = form.cleaned_data['email']
-            user.save()
-            profile.save()
-            return redirect('accounts.views.profile')
-            
-    else:
-        form = ProfileForm()
+    if (user == request.user):
+        if (request.method == 'POST'):
+            form = ProfileForm(request.POST)
+            if form.is_valid():
+                user.first_name = form.cleaned_data['first_name']
+                user.last_name = form.cleaned_data['last_name']
+                profile.zip_code = form.cleaned_data['zip_code']
+                user.email = form.cleaned_data['email']
+                user.save()
+                profile.save()
+                return redirect('accounts.views.profile')
+        else:
+            form = ProfileForm()
 
     # Callback URL for Transloadit
     

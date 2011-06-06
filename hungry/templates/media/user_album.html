@@ -7,7 +7,7 @@
 
     <ul class="gallery">
         {% for media in page.object_list %}
-            <li><a href="{% url hungry.media.user_media_item media.id %}">{{ media.thumb_tag }}</li>
+            <li><a href="{% url media_item media.id %}">{{ media.thumb_tag }}</li>
         {% endfor %}
     </ul>
     {% include "_pager.html" %} 
